@@ -108,7 +108,6 @@ class MetricInfo:
         return round(score, 1)
 
 
-# --- Database of All Metrics (now without default parameters) ---
 ALL_METRICS: Dict[str, MetricInfo] = {}
 
 
@@ -117,7 +116,6 @@ def add_metric(metric_def: MetricInfo):
     ALL_METRICS[metric_def.name] = metric_def
 
 
-# --- POPULATING METRICS (from pitch.md tables, now purely definitional) ---
 
 # 1. WINDUP PHASE
 add_metric(MetricInfo("Knee Lift Height", "°", ScoreType.OPTIMAL_RANGE,
@@ -299,7 +297,6 @@ def interactive_scoring_tool():
             print("Exiting tool. Goodbye!")
             break
         elif user_input_choice.lower() == 'list':
-            # This 'list' logic will now show all info, then re-prompt for a number.
             print("\nMetrics and their scoring types:")
             for i, name in enumerate(sorted_metric_names, 1):
                 metric_def = ALL_METRICS[name]
