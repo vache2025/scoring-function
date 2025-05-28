@@ -14,7 +14,6 @@ class ScoreType(Enum):
     INJURY_RISK = "injury_risk"  # Score 100 below warning, scales to min_score_value at/above critical
 
 
-# --- Metric Information Data Class (Now truly parameter-free) ---
 class MetricInfo:
     """
     Defines the properties and scoring logic type for a single biomechanical metric.
@@ -284,10 +283,6 @@ def get_metric_score_runtime_params(metric_name: str, value: float, params: Dict
 
 # --- Interactive Tool ---
 def interactive_scoring_tool():
-    """Provides an interactive command-line tool for scoring metrics."""
-    print("Welcome to the Baseball Pitching Biomechanics Scorer (Simplified Version)!")
-    print("This tool calculates a 1-100 score for individual pitching metrics (no score will be 0).")
-    print("You will provide all optimal ranges/thresholds for scoring.")
     print("Type 'list' to see all available metrics, or 'exit' to quit.")
 
     # Cache sorted metric names for numerical selection
@@ -331,7 +326,6 @@ def interactive_scoring_tool():
             print("Invalid value. Please enter a numerical value.")
             continue
 
-        # --- Prompt for runtime parameters based on ScoreType ---
         runtime_params = {}
         print(f"\n--- Enter Scoring Parameters for {metric_info.name} ({metric_info.score_type.value}) ---")
         if metric_info.score_type == ScoreType.OPTIMAL_RANGE:
